@@ -2,7 +2,8 @@ from typing import List
 from uuid import uuid4
 
 
-from app.v1.model.models import Location, Category
+from app.v1.schema.category import Category
+from app.v1.schema.location import Location
 
 categories: List[Category] = [
     Category(

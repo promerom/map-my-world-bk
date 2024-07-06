@@ -3,10 +3,7 @@ from uuid import UUID, uuid4
 
 from pydantic import BaseModel
 
-
-class Category(BaseModel):
-    id: Optional[UUID] = uuid4()
-    type: str
+from app.v1.schema.category import Category
 
 
 class Location(BaseModel):
@@ -15,10 +12,3 @@ class Location(BaseModel):
     longitude: str
     latitude: str
     category: Category
-
-
-class LocationCategoryReviewed(BaseModel):
-    id: Optional[UUID] = uuid4()
-    id_location: int
-    id_category: int
-    reviewed: bool

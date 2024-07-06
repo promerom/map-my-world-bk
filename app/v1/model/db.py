@@ -4,6 +4,7 @@ from uuid import uuid4
 
 from app.v1.schema.category import Category
 from app.v1.schema.location import Location
+from app.v1.schema.location_category_reviewed import LocationCategoryReviewed
 
 categories: List[Category] = [
     Category(
@@ -34,3 +35,4 @@ locations: List[Location] = [
         latitude="7.6.5.4.3.2"
     )
 ]
+locations_and_categories_reviewed: List[LocationCategoryReviewed] = []

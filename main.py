@@ -5,7 +5,7 @@ from fastapi import FastAPI
 
 from app.v1.schema.category import Category
 from app.v1.schema.location import Location
-from app.v1.model import db, location_category_reviewed
+from app.v1.model import db
 from app.v1.schema.location_category_reviewed import LocationCategoryReviewed
 
 app = FastAPI()
@@ -45,7 +45,7 @@ async def review():
     days = today - yesterday
 
     for_review = []
-    for lcr in location_category_reviewed.locations_and_categories_reviewed:
+    for lcr in db.locations_and_categories_reviewed:
         days_since_review = datetime.now() - lcr.date_reviewed
         if lcr.reviewed == False or days_since_review.days > 29:
             for_review.append(lcr)
@@ -59,7 +59,7 @@ async def review():
 async def locations_and_categories():
     for cat in db.categories:
         for loc in db.locations:
-            location_category_reviewed.locations_and_categories_reviewed.append(
+            db.locations_and_categories_reviewed.append(
                 LocationCategoryReviewed(
                     id=uuid4(),
                     id_category=cat,
@@ -67,12 +67,12 @@ async def locations_and_categories():
                     date_reviewed=datetime.now()
                 )
             )
-    return location_category_reviewed.locations_and_categories_reviewed
+    return db.locations_and_categories_reviewed
 
 
 @app.post("/api/v1/reviewed")
 async def reviewed(id_location_category_reviewed: UUID):
-    for location_category_for_review in location_category_reviewed.locations_and_categories_reviewed:
+    for location_category_for_review in db.locations_and_categories_reviewed:
         if location_category_for_review.id == id_location_category_reviewed:
             location_category_for_review.reviewed = True
             location_category_for_review.date_reviewed = datetime.now()

@@ -11,4 +11,3 @@ class Location(BaseModel):
     name: str
     longitude: str
     latitude: str
-    category: Category

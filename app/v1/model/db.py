@@ -25,14 +25,12 @@ locations: List[Location] = [
         id=uuid4(),
         name="Location 1",
         longitude="1.2.3.4.5.6",
-        latitude="6.5.4.3.2.1",
-        category=next((cat for cat in categories if cat.type == "stadium"), None)
+        latitude="6.5.4.3.2.1"
     ),
     Location(
         id=uuid4(),
         name="Location 2",
         longitude="2.3.4.5.6.7",
-        latitude="7.6.5.4.3.2",
-        category=next((cat for cat in categories if cat.type == "house"), None)
+        latitude="7.6.5.4.3.2"
     )
 ]

@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 
-from app.v1.model.models import Location, Category
-from app.v1.schema import db
+from app.v1.schema.category import Category
+from app.v1.schema.location import Location
+from app.v1.model import db
 
 app = FastAPI()
 

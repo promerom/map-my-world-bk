@@ -13,5 +13,4 @@ class LocationCategoryReviewed(BaseModel):
     id_location: Location
     id_category: Category
     date_reviewed: datetime
-    reviewed: bool
-
+    reviewed: Optional[bool] = False
